@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.takephoto">
+
+    <!-- Izin untuk mengakses kamera -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Izin penyimpanan untuk Android 10 dan lebih rendah -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+
+    <!-- Untuk aplikasi di Android 10 (API level 29), izinkan penyimpanan legacy -->
+    <application
+        android:allowBackup="true"
+        android:label="TakePhoto"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:requestLegacyExternalStorage="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.example.ACTION_TAKE_PHOTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CameraActivity" />
+    </application>
+
+</manifest>
