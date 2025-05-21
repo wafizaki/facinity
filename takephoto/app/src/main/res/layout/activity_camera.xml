@@ -24,7 +24,7 @@
         android:id="@+id/previewFrame"
         android:layout_width="match_parent" android:layout_height="0dp"
         android:layout_below="@id/tvSkinCheckerTitle"
-        android:layout_above="@id/btnCapture"
+        android:layout_above="@id/btnRow"
         android:layout_marginTop="8dp" android:layout_marginBottom="16dp"
         android:background="#ccc" android:layout_centerHorizontal="true">
 
@@ -33,14 +33,52 @@
             android:layout_width="match_parent" android:layout_height="match_parent" />
     </FrameLayout>
 
-    <Button
-        android:id="@+id/btnCapture"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Capture" android:textSize="18sp" android:fontFamily="sans-serif-medium"
-        android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-        android:paddingStart="24dp" android:paddingEnd="24dp"
-        android:paddingTop="12dp" android:paddingBottom="12dp"
-        android:backgroundTint="#3F51B5" android:textColor="#ffffff" android:elevation="4dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp"
+        android:weightSum="3"
+        android:id="@+id/btnRow">
+
+
+
+        <Button
+            android:id="@+id/btnViewPhotos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="View Stored Photos"
+            android:padding="12dp" />
+        <Button
+            android:id="@+id/btnCapture"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Capture"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:backgroundTint="#3F51B5"
+            android:textColor="#ffffff"
+            android:elevation="4dp" />
+
+        <Button
+            android:id="@+id/btnSwitchCamera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Switch"
+            android:padding="12dp" />
+    </LinearLayout>
+
+
+
 
     <Button
         android:id="@+id/btnRetake"

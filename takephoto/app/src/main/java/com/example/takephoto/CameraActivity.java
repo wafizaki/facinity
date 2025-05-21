@@ -17,15 +17,23 @@ import androidx.core.app.ActivityCompat;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.*;
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+
 
 public class CameraActivity extends AppCompatActivity {
 
     private TextureView textureView;
     private ImageView imageView;
-    private Button btnCapture, btnRetake, btnNext;
+    private Button btnCapture, btnRetake, btnNext, btnViewPhotos, btnSwitchCamera;
+
     private CameraDevice cameraDevice;
     private Size imageDimension;
     private ImageReader imageReader;
+
+    private String cameraId;
+    private boolean isUsingBackCamera = true;
+
     private static final int REQUEST_CAMERA_PERMISSION = 200;
 
     @Override
@@ -37,12 +45,33 @@ public class CameraActivity extends AppCompatActivity {
         btnCapture = findViewById(R.id.btnCapture);
         btnRetake = findViewById(R.id.btnRetake);
         btnNext = findViewById(R.id.btnNext);
+        btnViewPhotos = findViewById(R.id.btnViewPhotos);
+
+        btnSwitchCamera = findViewById(R.id.btnSwitchCamera);
+
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         textureView.setSurfaceTextureListener(surfaceListener);
         btnCapture.setOnClickListener(v -> takePhoto());
         btnRetake.setOnClickListener(v -> resetPreview());
-        btnNext.setOnClickListener(v -> Toast.makeText(this, "Next button clicked", Toast.LENGTH_SHORT).show());
+        btnNext.setOnClickListener(v -> {
+            imageView.setDrawingCacheEnabled(true);
+            Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+            new PhotoDatabaseHelper(this).insertPhoto(bitmap);
+            Toast.makeText(this, "Photo saved!", Toast.LENGTH_SHORT).show();
+            finish(); // return to MainActivity
+        });
+
+        btnViewPhotos.setOnClickListener(v ->
+                startActivity(new Intent(this, PhotoGalleryActivity.class)));
+
+
+        btnSwitchCamera.setOnClickListener(v -> {
+            isUsingBackCamera = !isUsingBackCamera;
+            if (cameraDevice != null) cameraDevice.close();
+            openCamera();
+        });
+
     }
 
     private final TextureView.SurfaceTextureListener surfaceListener = new TextureView.SurfaceTextureListener() {
@@ -52,10 +81,26 @@ public class CameraActivity extends AppCompatActivity {
         public void onSurfaceTextureUpdated(@NonNull SurfaceTexture s) {}
     };
 
+    private String getCameraId(boolean useBackCamera) throws CameraAccessException {
+        CameraManager manager = (CameraManager) getSystemService(CAMERA_SERVICE);
+        for (String id : manager.getCameraIdList()) {
+            CameraCharacteristics characteristics = manager.getCameraCharacteristics(id);
+            Integer lensFacing = characteristics.get(CameraCharacteristics.LENS_FACING);
+            if (useBackCamera && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
+                return id;
+            } else if (!useBackCamera && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_FRONT) {
+                return id;
+            }
+        }
+        return null; // fallback
+    }
+
+
     private void openCamera() {
         try {
             CameraManager manager = (CameraManager) getSystemService(CAMERA_SERVICE);
-            String cameraId = manager.getCameraIdList()[0];
+            cameraId = getCameraId(isUsingBackCamera);
+
             imageDimension = manager.getCameraCharacteristics(cameraId)
                     .get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
                     .getOutputSizes(SurfaceTexture.class)[0];
@@ -150,6 +195,8 @@ public class CameraActivity extends AppCompatActivity {
                 imageView.setImageBitmap(rotated);
                 imageView.setVisibility(View.VISIBLE);
                 btnCapture.setVisibility(View.GONE);
+                btnViewPhotos.setVisibility(View.GONE);
+                btnSwitchCamera.setVisibility(View.GONE);
                 btnRetake.setVisibility(View.VISIBLE);
                 btnNext.setVisibility(View.VISIBLE);
             });
@@ -166,6 +213,8 @@ public class CameraActivity extends AppCompatActivity {
         imageView.setVisibility(View.GONE);
         textureView.setVisibility(View.VISIBLE);
         btnCapture.setVisibility(View.VISIBLE);
+        btnViewPhotos.setVisibility(View.VISIBLE);
+        btnSwitchCamera.setVisibility(View.VISIBLE);
         btnRetake.setVisibility(View.GONE);
         btnNext.setVisibility(View.GONE);
         startPreview();
