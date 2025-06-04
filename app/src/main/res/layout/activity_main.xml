@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fdfdfd"
+    android:padding="24dp">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/titleText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_revert"
+        android:tint="#222"
+        android:contentDescription="Back"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SkinChecker"
+        android:textSize="36sp"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textColor="#222"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let's Check!"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@id/titleText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#3F51B5"
+        android:textColor="#ffffff"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:elevation="4dp" />
+
+    <TextView
+        android:id="@+id/previewTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SkinChecker"
+        android:textSize="36sp"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
+        android:textColor="#222"
+        android:layout_below="@id/btnStart"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_below="@id/previewTitleText"
+        android:layout_marginTop="0dp"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#ffffff"
+        android:elevation="4dp"
+        android:visibility="gone" />
+    <Button
+        android:id="@+id/btnStoredPhotos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Stored Photos" />
+
+
+</RelativeLayout>
