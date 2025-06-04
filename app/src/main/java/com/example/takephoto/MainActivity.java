@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private Button btnStart, btnNext, btnStoredPhotos;
-    private ImageButton btnBack;
+    private ImageButton btnBack, btnHome;
     private TextView titleText, previewTitleText;
     private Uri selectedImageUri;
     private ProgressDialog loadingDialog;
@@ -53,18 +53,34 @@ public class MainActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.btnStart);
         btnBack = findViewById(R.id.btnBack);
         btnNext = findViewById(R.id.btnNext);
-
+        btnHome = findViewById(R.id.btnHome);
     }
 
     private void setupListeners() {
         btnStart.setOnClickListener(this::showOptionMenu);
-        btnBack.setOnClickListener(v -> finish()); // <-- Tambahkan ini
+
+        // Tombol back kembali ke MainActivity (refresh/ulang)
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+        });
+
         btnNext.setOnClickListener(v -> {
             if (selectedImageUri != null) {
                 sendToRoboflow(selectedImageUri);
             } else {
                 Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        // Tombol home ke HomeActivity
+        btnHome.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -94,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setVisibility(View.GONE);
         btnBack.setVisibility(View.GONE);
         btnNext.setVisibility(View.GONE);
+        btnHome.setVisibility(View.VISIBLE);
     }
 
     private void showPreviewUI() {
@@ -104,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         imageView.setVisibility(View.VISIBLE);
         btnBack.setVisibility(View.VISIBLE);
         btnNext.setVisibility(View.VISIBLE);
+        btnHome.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -113,8 +131,6 @@ public class MainActivity extends AppCompatActivity {
             selectedImageUri = data.getData();
             imageView.setImageURI(selectedImageUri);
             showPreviewUI();
-            // Jika ingin langsung simpan ke database:
-            // saveImageToDatabase(selectedImageUri);
         }
     }
 
@@ -158,28 +174,52 @@ public class MainActivity extends AppCompatActivity {
                     if (response.body() != null) {
                         String result = response.body().string();
                         String message = "Tidak ada prediksi.";
+                        String tipeKulit = null;
+                        double conf = 0;
                         try {
                             JSONObject json = new JSONObject(result);
                             JSONArray predictions = json.getJSONArray("predictions");
                             if (predictions.length() > 0) {
                                 JSONObject pred = predictions.getJSONObject(0);
-                                String tipe = pred.getString("class");
-                                double conf = pred.getDouble("confidence");
+                                tipeKulit = pred.getString("class");
+                                conf = pred.getDouble("confidence");
                                 int persen = (int) Math.round(conf * 100);
-                                message = "Tipe Kulit: " + tipe + "\nTingkat: " + persen + "%";
+                                message = "Tipe Kulit: " + tipeKulit + "\nTingkat: " + persen + "%";
                             }
                         } catch (Exception e) {
                             message = "Gagal membaca hasil prediksi.";
                         }
                         String finalMessage = message;
+                        String finalTipeKulit = tipeKulit;
                         runOnUiThread(() -> {
                             if (loadingDialog != null && loadingDialog.isShowing())
                                 loadingDialog.dismiss();
-                            new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("Hasil Prediksi")
-                                    .setMessage(finalMessage)
-                                    .setPositiveButton("OK", null)
-                                    .show();
+
+                            // Tampilkan dialog hasil prediksi dengan tombol "Selengkapnya"
+                            androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Hasil Prediksi")
+                                .setMessage(finalMessage)
+                                .setPositiveButton("Selengkapnya", (dialog, which) -> {
+                                    if (finalTipeKulit != null) {
+                                        Intent intent = null;
+                                        switch (finalTipeKulit.toLowerCase()) {
+                                            case "oily":
+                                                intent = new Intent(MainActivity.this, OilySkinInfoActivity.class);
+                                                break;
+                                            case "dry":
+                                                intent = new Intent(MainActivity.this, DrySkinInfoActivity.class);
+                                                break;
+                                            case "normal":
+                                                intent = new Intent(MainActivity.this, NormalSkinInfoActivity.class);
+                                                break;
+                                        }
+                                        if (intent != null) {
+                                            startActivity(intent);
+                                        }
+                                    }
+                                })
+                                .setNegativeButton("Tutup", null);
+                            builder.show();
                         });
                     }
                 }

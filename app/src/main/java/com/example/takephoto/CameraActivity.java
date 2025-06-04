@@ -23,7 +23,7 @@ import okhttp3.*;
 import android.app.ProgressDialog;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+import android.content.Intent;
 public class CameraActivity extends AppCompatActivity {
 
     private TextureView textureView;
@@ -103,27 +103,49 @@ public class CameraActivity extends AppCompatActivity {
                 if (response.body() != null) {
                     String result = response.body().string();
                     String message = "Tidak ada prediksi.";
+                    String tipeKulit = null;
+                    double conf = 0;
                     try {
                         JSONObject json = new JSONObject(result);
                         JSONArray predictions = json.getJSONArray("predictions");
                         if (predictions.length() > 0) {
                             JSONObject pred = predictions.getJSONObject(0);
-                            String tipe = pred.getString("class");
-                            double conf = pred.getDouble("confidence");
+                            tipeKulit = pred.getString("class");
+                            conf = pred.getDouble("confidence");
                             int persen = (int) Math.round(conf * 100);
-                            message = "Tipe Kulit: " + tipe + "\nTingkat: " + persen + "%";
+                            message = "Tipe Kulit: " + tipeKulit + "\nTingkat: " + persen + "%";
                         }
                     } catch (Exception e) {
                         message = "Gagal membaca hasil prediksi.";
                     }
                     String finalMessage = message;
+                    String finalTipeKulit = tipeKulit;
                     runOnUiThread(() -> {
                         if (loadingDialog != null && loadingDialog.isShowing()) loadingDialog.dismiss();
                         new androidx.appcompat.app.AlertDialog.Builder(CameraActivity.this)
-                                .setTitle("Hasil Prediksi")
-                                .setMessage(finalMessage)
-                                .setPositiveButton("OK", null)
-                                .show();
+                            .setTitle("Hasil Prediksi")
+                            .setMessage(finalMessage)
+                            .setPositiveButton("Selengkapnya", (dialog, which) -> {
+                                if (finalTipeKulit != null) {
+                                    Intent intent = null;
+                                    switch (finalTipeKulit.toLowerCase()) {
+                                        case "oily":
+                                            intent = new Intent(CameraActivity.this, OilySkinInfoActivity.class);
+                                            break;
+                                        case "dry":
+                                            intent = new Intent(CameraActivity.this, DrySkinInfoActivity.class);
+                                            break;
+                                        case "normal":
+                                            intent = new Intent(CameraActivity.this, NormalSkinInfoActivity.class);
+                                            break;
+                                    }
+                                    if (intent != null) {
+                                        startActivity(intent);
+                                    }
+                                }
+                            })
+                            .setNegativeButton("Tutup", null)
+                            .show();
                     });
                 }
             }

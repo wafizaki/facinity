@@ -4,19 +4,30 @@
     android:background="#fdfdfd"
     android:padding="24dp">
 
- <ImageButton
-     android:id="@+id/btnBack"
-     android:layout_width="40dp"
-     android:layout_height="40dp"
-     android:layout_alignParentTop="true"
-     android:layout_alignParentStart="true"
-     android:layout_marginTop="10dp"
-     android:layout_marginStart="4dp"
-     android:background="@android:color/transparent"
-     android:src="@android:drawable/ic_menu_revert"
-     android:tint="#222"
-     android:contentDescription="Back"
-     android:visibility="visible" />
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="4dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_revert"
+        android:tint="#222"
+        android:contentDescription="Back"
+        android:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/btnHome"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Home"
+        android:src="@drawable/ic_home" /> 
 
  <TextView
      android:id="@+id/titleText"
