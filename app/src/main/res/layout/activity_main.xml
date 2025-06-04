@@ -2,32 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
-    android:padding="24dp">
-
-    <!-- Back Button dengan CardView agar lebih modern -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="4dp"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="4dp"
-        android:background="@android:color/transparent">
-
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:src="@android:drawable/ic_menu_revert"
-            android:tint="@color/teal_primary"
-            android:contentDescription="Back"
-            android:scaleType="center"
-            android:elevation="0dp"/>
-    </androidx.cardview.widget.CardView>
+    android:background="#F5F5F5">
 
     <TextView
         android:id="@+id/titleText"
@@ -46,7 +21,7 @@
         android:shadowDy="2"
         android:shadowRadius="4"/>
 
-    <!-- Tombol utama dengan CardView warna teal dan button transparan -->
+    <!-- Tombol utama -->
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,4 +48,14 @@
             android:elevation="0dp"/>
     </androidx.cardview.widget.CardView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:menu="@menu/bottom_navigation_menu" />
 </RelativeLayout>

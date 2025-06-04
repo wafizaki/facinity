@@ -47,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             } else if (id == R.id.nav_scan) {
                 startActivity(new Intent(HomeActivity.this, MainActivity.class));
+                overridePendingTransition(0, 0); 
                 return true;
             } else if (id == R.id.nav_products) {
                 Toast.makeText(this, "Products feature coming soon", Toast.LENGTH_SHORT).show();
