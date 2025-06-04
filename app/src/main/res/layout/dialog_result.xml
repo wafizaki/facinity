@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="28dp"
+    android:gravity="center"
+    android:background="@drawable/bg_loading_dialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgResult"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ic_check_circle"
+        android:tint="@color/teal_primary"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hasil Prediksi"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#222"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tipe Kulit: Normal\nTingkat: 90%"
+        android:textSize="16sp"
+        android:textColor="#444"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tutup"
+            android:background="@drawable/bg_button_retake"
+            android:textColor="#fff"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="8dp"
+            android:layout_marginEnd="12dp" />
+
+        <Button
+            android:id="@+id/btnDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info"
+            android:background="@drawable/bg_button_next"
+            android:textColor="#fff"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="8dp" />
+    </LinearLayout>
+</LinearLayout>

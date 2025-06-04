@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_GALLERY = 300;
@@ -54,23 +54,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void showOptionMenu(View anchor) {
-        PopupMenu popup = new PopupMenu(this, anchor);
-        popup.getMenu().add("Take Photo");
-        popup.getMenu().add("Select from Gallery");
+private void showOptionMenu(View anchor) {
+    showBottomSheet();
+}
 
-        popup.setOnMenuItemClickListener(item -> {
-            String choice = item.getTitle().toString();
-            if (choice.equals("Take Photo")) {
-                startActivity(new Intent(this, CameraActivity.class));
-            } else if (choice.equals("Select from Gallery")) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, REQUEST_GALLERY);
-            }
-            return true;
-        });
-        popup.show();
+private void showBottomSheet() {
+    BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+    View sheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_options, null);
+    bottomSheetDialog.setContentView(sheetView);
+
+    // Membuat area luar bottom sheet benar-benar transparan
+    if (bottomSheetDialog.getWindow() != null) {
+        bottomSheetDialog.getWindow().setDimAmount(0f); // Tidak ada dim sama sekali
+        bottomSheetDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
     }
+
+    TextView takePhoto = sheetView.findViewById(R.id.takePhoto);
+    TextView selectGallery = sheetView.findViewById(R.id.selectGallery);
+
+    takePhoto.setOnClickListener(v -> {
+        bottomSheetDialog.dismiss();
+        startActivity(new Intent(this, CameraActivity.class));
+    });
+
+    selectGallery.setOnClickListener(v -> {
+        bottomSheetDialog.dismiss();
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_GALLERY);
+    });
+
+    bottomSheetDialog.show();
+}
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
