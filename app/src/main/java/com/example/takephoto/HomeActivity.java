@@ -1,6 +1,9 @@
 package com.example.takephoto;
 
 import android.content.Intent;
+import android.net.Uri;
+import androidx.cardview.widget.CardView;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    //private CardView cardArtikel1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +31,16 @@ public class HomeActivity extends AppCompatActivity {
 
         initializeViews();
         setupBottomNavigation();
+        CardView cardArtikel1 = findViewById(R.id.cardArtikel1);
+        cardArtikel1.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://olay.co.uk/skin-care-tips/night-routine/nighttime-skincare-routine"));
+            startActivity(intent);
+        });
     }
 
     private void initializeViews() {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+        //cardArtikel1 = findViewById(R.id.cardArtikel1);
 
         findViewById(R.id.btnOilySkin)
                 .setOnClickListener(v -> startActivity(new Intent(this, OilySkinInfoActivity.class)));
@@ -39,6 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.btnNormalSkin)
                 .setOnClickListener(v -> startActivity(new Intent(this, NormalSkinInfoActivity.class)));
     }
+
+
+
 
     private void setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener(item -> {

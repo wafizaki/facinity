@@ -362,13 +362,14 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center_horizontal"
+                                android:src="@drawable/ic_moist"
                                 android:scaleType="centerCrop"
                                 android:layout_marginBottom="8dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Salicylic Acid 2% Clearing Solution"
+                                android:text="Somethinc Moisturizer Skin Saviour"
                                 android:textColor="@android:color/black"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
@@ -378,7 +379,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="30 ml | Expert"
+                                android:text="Moisturizer | Dry Skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="10sp"
                                 android:layout_marginTop="4dp"
@@ -407,13 +408,14 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center_horizontal"
+                                android:src="@drawable/sunscreen"
                                 android:layout_marginBottom="8dp"
                                 android:scaleType="centerCrop" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="AHA 30% + BHA 2% Peeling Solution"
+                                android:text="YOU Sunscreen SPF50"
                                 android:textColor="@android:color/black"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
@@ -423,7 +425,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="30 ml | Expert"
+                                android:text="Sunscreen | Dry Skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="10sp"
                                 android:layout_marginTop="4dp"
@@ -452,13 +454,14 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_gravity="center_horizontal"
+                                android:src="@drawable/cushion"
                                 android:scaleType="centerCrop"
                                 android:layout_marginBottom="8dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Salicylic Acid 2% Masque"
+                                android:text="Wardah Exclusive Flawless Cover Cushion"
                                 android:textColor="@android:color/black"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
@@ -468,7 +471,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="50 ml | Expert"
+                                android:text="Make Up | Dry Skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="10sp"
                                 android:layout_marginTop="4dp"
@@ -516,10 +519,14 @@
 
                 <!-- Video 1 -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardArtikel1"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="3dp">
 
@@ -530,6 +537,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:src="@drawable/nightroutine"
                             android:scaleType="centerCrop" />
 
                         <View
@@ -548,7 +556,7 @@
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-                                android:src="@drawable/ic_person"
+
                                 android:layout_marginEnd="8dp" />
 
                             <LinearLayout
@@ -560,7 +568,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Daily Skincare"
+                                    android:text="Night Routine Tutorial"
                                     android:textColor="@android:color/white"
                                     android:textSize="12sp"
                                     android:textStyle="bold"
@@ -569,7 +577,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Nighttime Routine Tutorial"
+                                    android:text="Daily Skincare"
                                     android:textColor="@android:color/white"
                                     android:textSize="10sp"
                                     android:fontFamily="@font/poppins_regular" />
@@ -603,6 +611,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:src="@drawable/acnetutor"
                             android:scaleType="centerCrop" />
 
                         <View
@@ -642,7 +651,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Best Products Guide"
+                                    android:text="Daily Skincare"
                                     android:textColor="@android:color/white"
                                     android:textSize="10sp"
                                     android:fontFamily="@font/poppins_regular" />
