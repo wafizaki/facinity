@@ -1,4 +1,5 @@
 package com.example.takephoto;
+
 import android.content.Intent;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -26,10 +27,18 @@ public class HomeActivity extends AppCompatActivity {
         setupBottomNavigation();
     }
 
+    // ...existing code...
     private void initializeViews() {
-        // Pastikan ID ini sesuai dengan ID di layout activity_home.xml
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+
+        findViewById(R.id.btnOilySkin)
+                .setOnClickListener(v -> startActivity(new Intent(this, OilySkinInfoActivity.class)));
+        findViewById(R.id.btnDrySkin)
+                .setOnClickListener(v -> startActivity(new Intent(this, DrySkinInfoActivity.class)));
+        findViewById(R.id.btnNormalSkin)
+                .setOnClickListener(v -> startActivity(new Intent(this, NormalSkinInfoActivity.class)));
     }
+    // ...existing code...
 
     private void setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener(item -> {

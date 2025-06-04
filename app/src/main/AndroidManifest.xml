@@ -32,6 +32,10 @@
 
         <activity android:name=".CameraActivity" />
         <activity android:name=".PhotoGalleryActivity" />
+        <!-- Tambahkan di dalam <application> -->
+<activity android:name=".OilySkinInfoActivity"/>
+<activity android:name=".DrySkinInfoActivity"/>
+<activity android:name=".NormalSkinInfoActivity"/>
 
     </application>
 

@@ -16,6 +16,11 @@
         android:icon="@drawable/ic_shopping_bag"
         android:title="Products" />
 
+<item
+    android:id="@+id/nav_skin_type_info"
+    android:icon="@drawable/circle_info_solid" 
+    android:title="Tipe Kulit"/>
+
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_person"

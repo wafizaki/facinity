@@ -29,6 +29,38 @@
                     app:cardCornerRadius="12dp"
                     app:cardElevation="4dp">
 
+                    <!-- Tambahkan setelah header card, sebelum Tips Cards Row -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_marginBottom="16dp">
+
+    <Button
+        android:id="@+id/btnOilySkin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Oily Skin"
+        android:layout_marginEnd="8dp"/>
+
+    <Button
+        android:id="@+id/btnDrySkin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Dry Skin"
+        android:layout_marginEnd="8dp"/>
+
+    <Button
+        android:id="@+id/btnNormalSkin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Normal Skin"/>
+</LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
