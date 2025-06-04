@@ -1,3 +1,4 @@
+
 package com.example.takephoto;
 
 import android.Manifest;
@@ -17,24 +18,25 @@ import androidx.core.app.ActivityCompat;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.*;
-import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
-
+import android.util.Base64;
+import okhttp3.*;
+import android.app.ProgressDialog;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class CameraActivity extends AppCompatActivity {
 
     private TextureView textureView;
     private ImageView imageView;
-    private Button btnCapture, btnRetake, btnNext, btnViewPhotos, btnSwitchCamera;
-
+    private Button btnCapture, btnRetake, btnNext;
     private CameraDevice cameraDevice;
     private Size imageDimension;
     private ImageReader imageReader;
-
-    private String cameraId;
-    private boolean isUsingBackCamera = true;
-
     private static final int REQUEST_CAMERA_PERMISSION = 200;
+    private Bitmap capturedBitmap;
+    private String cameraId; // Simpan id kamera aktif
+    private boolean isUsingBackCamera = true; // Default kamera belakang
+    private ProgressDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,35 +47,96 @@ public class CameraActivity extends AppCompatActivity {
         btnCapture = findViewById(R.id.btnCapture);
         btnRetake = findViewById(R.id.btnRetake);
         btnNext = findViewById(R.id.btnNext);
-        btnViewPhotos = findViewById(R.id.btnViewPhotos);
-
-        btnSwitchCamera = findViewById(R.id.btnSwitchCamera);
-
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         textureView.setSurfaceTextureListener(surfaceListener);
         btnCapture.setOnClickListener(v -> takePhoto());
         btnRetake.setOnClickListener(v -> resetPreview());
         btnNext.setOnClickListener(v -> {
-            imageView.setDrawingCacheEnabled(true);
-            Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-            new PhotoDatabaseHelper(this).insertPhoto(bitmap);
-            Toast.makeText(this, "Photo saved!", Toast.LENGTH_SHORT).show();
-            finish(); // return to MainActivity
+            if (capturedBitmap != null) {
+                sendToRoboflow(capturedBitmap);
+            } else {
+                Toast.makeText(this, "No image captured", Toast.LENGTH_SHORT).show();
+            }
         });
-
-        btnViewPhotos.setOnClickListener(v ->
-                startActivity(new Intent(this, PhotoGalleryActivity.class)));
-
-
+        ImageButton btnSwitchCamera = findViewById(R.id.btnSwitchCamera);
         btnSwitchCamera.setOnClickListener(v -> {
             isUsingBackCamera = !isUsingBackCamera;
-            if (cameraDevice != null) cameraDevice.close();
+            closeCamera();
             openCamera();
         });
+    }
+    private void sendToRoboflow(Bitmap bitmap) {
+        String base64Image = bitmapToBase64(bitmap);
 
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = RequestBody.create(
+                MediaType.parse("application/x-www-form-urlencoded"),
+                "data:image/jpeg;base64," + base64Image
+        );
+
+        String ROBOFLOW_URL = "https://detect.roboflow.com/skin-types-ykqvh/3?api_key=zKH7SfpnLcq4Dx6pqVrN";
+
+        Request request = new Request.Builder()
+                .url(ROBOFLOW_URL)
+                .post(body)
+                .build();
+
+        runOnUiThread(() -> {
+            loadingDialog = new ProgressDialog(CameraActivity.this);
+            loadingDialog.setMessage("Memproses gambar...");
+            loadingDialog.setCancelable(false);
+            loadingDialog.show();
+        });
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> {
+                    if (loadingDialog != null && loadingDialog.isShowing()) loadingDialog.dismiss();
+                    Toast.makeText(CameraActivity.this, "Request failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.body() != null) {
+                    String result = response.body().string();
+                    String message = "Tidak ada prediksi.";
+                    try {
+                        JSONObject json = new JSONObject(result);
+                        JSONArray predictions = json.getJSONArray("predictions");
+                        if (predictions.length() > 0) {
+                            JSONObject pred = predictions.getJSONObject(0);
+                            String tipe = pred.getString("class");
+                            double conf = pred.getDouble("confidence");
+                            int persen = (int) Math.round(conf * 100);
+                            message = "Tipe Kulit: " + tipe + "\nTingkat: " + persen + "%";
+                        }
+                    } catch (Exception e) {
+                        message = "Gagal membaca hasil prediksi.";
+                    }
+                    String finalMessage = message;
+                    runOnUiThread(() -> {
+                        if (loadingDialog != null && loadingDialog.isShowing()) loadingDialog.dismiss();
+                        new androidx.appcompat.app.AlertDialog.Builder(CameraActivity.this)
+                                .setTitle("Hasil Prediksi")
+                                .setMessage(finalMessage)
+                                .setPositiveButton("OK", null)
+                                .show();
+                    });
+                }
+            }
+        });
     }
 
+
+    private String bitmapToBase64(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);
+        byte[] imageBytes = baos.toByteArray();
+        return Base64.encodeToString(imageBytes, Base64.NO_WRAP);
+    }
     private final TextureView.SurfaceTextureListener surfaceListener = new TextureView.SurfaceTextureListener() {
         public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surface, int w, int h) { openCamera(); }
         public void onSurfaceTextureSizeChanged(@NonNull SurfaceTexture s, int w, int h) {}
@@ -81,25 +144,22 @@ public class CameraActivity extends AppCompatActivity {
         public void onSurfaceTextureUpdated(@NonNull SurfaceTexture s) {}
     };
 
-    private String getCameraId(boolean useBackCamera) throws CameraAccessException {
-        CameraManager manager = (CameraManager) getSystemService(CAMERA_SERVICE);
-        for (String id : manager.getCameraIdList()) {
-            CameraCharacteristics characteristics = manager.getCameraCharacteristics(id);
-            Integer lensFacing = characteristics.get(CameraCharacteristics.LENS_FACING);
-            if (useBackCamera && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
-                return id;
-            } else if (!useBackCamera && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_FRONT) {
-                return id;
-            }
-        }
-        return null; // fallback
-    }
-
-
     private void openCamera() {
         try {
             CameraManager manager = (CameraManager) getSystemService(CAMERA_SERVICE);
-            cameraId = getCameraId(isUsingBackCamera);
+            String[] cameraIdList = manager.getCameraIdList();
+            for (String id : cameraIdList) {
+                CameraCharacteristics characteristics = manager.getCameraCharacteristics(id);
+                Integer lensFacing = characteristics.get(CameraCharacteristics.LENS_FACING);
+                if (isUsingBackCamera && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
+                    cameraId = id;
+                    break;
+                } else if (!isUsingBackCamera && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_FRONT) {
+                    cameraId = id;
+                    break;
+                }
+            }
+            if (cameraId == null) cameraId = cameraIdList[0]; // fallback
 
             imageDimension = manager.getCameraCharacteristics(cameraId)
                     .get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
@@ -111,6 +171,13 @@ public class CameraActivity extends AppCompatActivity {
             }
             manager.openCamera(cameraId, cameraStateCallback, null);
         } catch (Exception e) { e.printStackTrace(); }
+    }
+
+    private void closeCamera() {
+        if (cameraDevice != null) {
+            cameraDevice.close();
+            cameraDevice = null;
+        }
     }
 
     private final CameraDevice.StateCallback cameraStateCallback = new CameraDevice.StateCallback() {
@@ -190,13 +257,17 @@ public class CameraActivity extends AppCompatActivity {
         try (OutputStream output = new FileOutputStream(file)) {
             output.write(bytes);
             Bitmap rotated = rotateBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+            // Resize hasil kamera depan agar sama dengan ukuran TextureView
+            if (!isUsingBackCamera && rotated != null && textureView.getWidth() > 0 && textureView.getHeight() > 0) {
+                rotated = Bitmap.createScaledBitmap(rotated, textureView.getWidth(), textureView.getHeight(), true);
+            }
+            capturedBitmap = rotated; // Simpan bitmap hasil foto
+            final Bitmap finalRotated = rotated; // Tambahkan ini
             runOnUiThread(() -> {
                 textureView.setVisibility(View.GONE);
-                imageView.setImageBitmap(rotated);
+                imageView.setImageBitmap(finalRotated);
                 imageView.setVisibility(View.VISIBLE);
                 btnCapture.setVisibility(View.GONE);
-                btnViewPhotos.setVisibility(View.GONE);
-                btnSwitchCamera.setVisibility(View.GONE);
                 btnRetake.setVisibility(View.VISIBLE);
                 btnNext.setVisibility(View.VISIBLE);
             });
@@ -205,7 +276,12 @@ public class CameraActivity extends AppCompatActivity {
 
     private Bitmap rotateBitmap(Bitmap src) {
         Matrix matrix = new Matrix();
-        matrix.postRotate(90);
+        if (isUsingBackCamera) {
+            matrix.postRotate(90);
+        } else {
+            matrix.postRotate(-90);
+            matrix.postScale(-1, 1);
+        }
         return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
     }
 
@@ -213,8 +289,6 @@ public class CameraActivity extends AppCompatActivity {
         imageView.setVisibility(View.GONE);
         textureView.setVisibility(View.VISIBLE);
         btnCapture.setVisibility(View.VISIBLE);
-        btnViewPhotos.setVisibility(View.VISIBLE);
-        btnSwitchCamera.setVisibility(View.VISIBLE);
         btnRetake.setVisibility(View.GONE);
         btnNext.setVisibility(View.GONE);
         startPreview();

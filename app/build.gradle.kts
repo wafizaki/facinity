@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -35,27 +36,14 @@ android {
 }
 
 dependencies {
-    // Hapus baris ini jika sudah menggunakan libs.*
-    // implementation 'androidx.appcompat:appcompat:1.6.1'
-    // implementation 'com.google.android.material:material:1.9.0'
-    // implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    // implementation 'androidx.cardview:cardview:1.0.0'
 
-    // Gunakan versi dari catalog (libs.versions.toml)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
-    implementation(libs.cardview) // Pastikan cardview didefinisikan di libs.versions.toml
-
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
-
-    // Navigation
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-
-    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }
