@@ -10,7 +10,7 @@ public class DrySkinInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oily);
+        setContentView(R.layout.activity_dry_skin_info);
 
         findViewById(R.id.btnCariProduk).setOnClickListener(v -> {
             String url = "https://shopee.co.id/search?keyword=skincare%20dry%20skin";

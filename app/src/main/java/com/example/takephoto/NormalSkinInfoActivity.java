@@ -10,7 +10,7 @@ public class NormalSkinInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oily);
+        setContentView(R.layout.activity_normal_skin_info);
 
         findViewById(R.id.btnCariProduk).setOnClickListener(v -> {
             String url = "https://shopee.co.id/search?keyword=skincare%20normal%20skin";
