@@ -78,7 +78,7 @@ public class CameraActivity extends AppCompatActivity {
                 "data:image/jpeg;base64," + base64Image
         );
 
-        String ROBOFLOW_URL = "https://detect.roboflow.com/skin-types-ykqvh/3?api_key=zKH7SfpnLcq4Dx6pqVrN";
+        String ROBOFLOW_URL = "https://serverless.roboflow.com/skin-types-ykqvh-mczrw/1?api_key=vJSLQaFSkpOFDYNoKb1k";
 
         runOnUiThread(this::showLoadingDialog);
 
