@@ -16,29 +16,24 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnHome, btnBack;
     private TextView titleText;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+       @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
 
-        titleText = findViewById(R.id.titleText);
-        btnStart = findViewById(R.id.btnStart);
-        btnHome = findViewById(R.id.btnHome);
-        btnBack = findViewById(R.id.btnBack);
+            titleText = findViewById(R.id.titleText);
+            btnStart = findViewById(R.id.btnStart);
+            btnBack = findViewById(R.id.btnBack);
 
-        btnStart.setOnClickListener(this::showOptionMenu);
+            btnStart.setOnClickListener(this::showOptionMenu);
 
-        btnHome.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            finish();
-        });
-
-        btnBack.setOnClickListener(v -> {
-            finish();
-        });
-    }
+            btnBack.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            });
+        }
 
     private void showOptionMenu(View anchor) {
         PopupMenu popup = new PopupMenu(this, anchor);

@@ -16,18 +16,7 @@
         android:src="@android:drawable/ic_menu_revert"
         android:tint="#222"
         android:contentDescription="Back"
-        android:visibility="visible" />
-
-    <ImageButton
-        android:id="@+id/btnHome"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="Home"
-        android:src="@drawable/ic_home" /> 
+        android:visibility="visible" />     
 
     <TextView
         android:id="@+id/titleText"

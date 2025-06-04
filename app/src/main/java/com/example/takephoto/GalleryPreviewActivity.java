@@ -19,7 +19,8 @@ import android.app.ProgressDialog;
 public class GalleryPreviewActivity extends AppCompatActivity {
 
     private ImageView imageView;
-    private Button btnNext, btnBack;
+    private Button btnNext, btnReupload;
+    private ImageButton btnBack;
     private ProgressDialog loadingDialog;
     private Uri imageUri;
 
@@ -30,6 +31,7 @@ public class GalleryPreviewActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         btnNext = findViewById(R.id.btnNext);
+        btnReupload = findViewById(R.id.btnReupload);
         btnBack = findViewById(R.id.btnBack);
 
         String uriString = getIntent().getStringExtra("imageUri");
@@ -50,9 +52,26 @@ public class GalleryPreviewActivity extends AppCompatActivity {
             }
         });
 
+        btnReupload.setOnClickListener(v -> {
+            // Buka galeri lagi untuk memilih ulang gambar
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, 300);
+        });
+
         btnBack.setOnClickListener(v -> {
             finish();
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 300 && resultCode == RESULT_OK && data != null) {
+            imageUri = data.getData();
+            if (imageUri != null) {
+                imageView.setImageURI(imageUri);
+            }
+        }
     }
 
     private void sendToRoboflow(Bitmap bitmap) {
