@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- Main Content Area -->
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F5F5F5"
+        android:layout_above="@+id/bottomNavigation"
+        android:padding="16dp">
 
-
-    >
-
-        <!-- Main Content Area -->
-        <ScrollView
-            android:id="@+id/scrollView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/bottomNavigation"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-
-  <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:scrollbars="none">
+                android:layout_marginBottom="24dp"
+                android:scrollbars="none">
                 <!-- Tips Cards Row -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -38,7 +33,7 @@
                     <!-- Drink Water Card -->
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-                        android:layout_height="160dp"
+                        android:layout_height="170dp"
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         app:cardCornerRadius="12dp"
@@ -55,7 +50,6 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
-
                                 android:layout_marginBottom="8dp" />
 
                             <TextView
@@ -65,8 +59,8 @@
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
-                                android:gravity="center" />
-                           
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -74,7 +68,8 @@
                                 android:text="Stay hydrated for healthy skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="12sp"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -83,19 +78,19 @@
                                 android:textColor="@color/teal_primary"
                                 android:textSize="11sp"
                                 android:textStyle="bold"
-                                android:layout_marginTop="8dp" />
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins_bold" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-                        android:layout_height="160dp"
+                        android:layout_height="170dp"
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp"
-                        >
+                        app:cardElevation="3dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -108,7 +103,6 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
-
                                 android:layout_marginBottom="8dp" />
 
                             <TextView
@@ -118,8 +112,8 @@
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
-                                android:gravity="center" />
-                         
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -127,7 +121,8 @@
                                 android:text="Use these products for oily skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="12sp"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -137,19 +132,19 @@
                                 android:textSize="11sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="8dp"
-                                android:id="@+id/btnOilySkin" />
+                                android:id="@+id/btnOilySkin"
+                                android:fontFamily="@font/poppins_bold" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-                        android:layout_height="160dp"
+                        android:layout_height="170dp"
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp"
-                       >
+                        app:cardElevation="3dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -162,7 +157,6 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
-
                                 android:layout_marginBottom="8dp" />
 
                             <TextView
@@ -172,8 +166,8 @@
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
-                                android:gravity="center" />
-                         
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -181,7 +175,8 @@
                                 android:text="Use these products for dry skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="12sp"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -191,19 +186,19 @@
                                 android:textSize="11sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="8dp"
-                                 android:id="@+id/btnDrySkin" />
+                                android:id="@+id/btnDrySkin"
+                                android:fontFamily="@font/poppins_bold" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-                        android:layout_height="160dp"
+                        android:layout_height="170dp"
                         android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp"
-                       >
+                        app:cardElevation="3dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -216,7 +211,6 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
-
                                 android:layout_marginBottom="8dp" />
 
                             <TextView
@@ -226,16 +220,17 @@
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
-                                android:gravity="center" />
-                         
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Use these products for normal skin"
+                                android:text="These products for normal skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="12sp"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -245,7 +240,8 @@
                                 android:textSize="11sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="8dp"
-                                 android:id="@+id/btnNormalSkin" />
+                                android:id="@+id/btnNormalSkin"
+                                android:fontFamily="@font/poppins_bold" />
 
                         </LinearLayout>
 
@@ -254,7 +250,7 @@
                     <!-- Not Too Hot Card -->
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-                        android:layout_height="160dp"
+                        android:layout_height="170dp"
                         android:layout_weight="1"
                         android:layout_marginStart="8dp"
                         app:cardCornerRadius="12dp"
@@ -271,7 +267,6 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
-
                                 android:layout_marginBottom="8dp" />
 
                             <TextView
@@ -281,7 +276,8 @@
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
-                                android:gravity="center" />
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -289,7 +285,8 @@
                                 android:text="Hot water can damage your skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="12sp"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -298,384 +295,387 @@
                                 android:textColor="@color/teal_primary"
                                 android:textSize="11sp"
                                 android:textStyle="bold"
-                                android:layout_marginTop="8dp" />
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="@font/poppins_bold" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
-                    </HorizontalScrollView>
+            </HorizontalScrollView>
 
+            <!-- Products Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
 
-                <!-- Products Section -->
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Products for you"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-
-                        app:tint="@android:color/darker_gray" />
-
-                </LinearLayout>
-
-                <!-- Products Horizontal Scroll -->
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingEnd="16dp">
-
-                        <!-- Product 1 -->
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="140dp"
-                            android:layout_height="200dp"
-                            android:layout_marginEnd="12dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="3dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:padding="12dp"
-                                android:background="@android:color/white">
-
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:layout_gravity="center_horizontal"
-
-                                    android:scaleType="centerCrop"
-                                    android:layout_marginBottom="8dp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Salicylic Acid 2% Clearing Solution"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold"
-                                    android:maxLines="2" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="30 ml | Expert"
-                                    android:textColor="@android:color/darker_gray"
-                                    android:textSize="10sp"
-                                    android:layout_marginTop="4dp" />
-
-                            </LinearLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <!-- Product 2 -->
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="140dp"
-                            android:layout_height="200dp"
-                            android:layout_marginEnd="12dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="3dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:padding="12dp"
-                                android:background="@android:color/white">
-
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:layout_gravity="center_horizontal"
-
-                                    android:layout_marginBottom="8dp"
-                                    android:scaleType="centerCrop" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="AHA 30% + BHA 2% Peeling Solution"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold"
-                                    android:maxLines="2" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="30 ml | Expert"
-                                    android:textColor="@android:color/darker_gray"
-                                    android:textSize="10sp"
-                                    android:layout_marginTop="4dp" />
-
-                            </LinearLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                        <!-- Product 3 -->
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="140dp"
-                            android:layout_height="200dp"
-                            android:layout_marginEnd="12dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="3dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"
-                                android:padding="12dp"
-                                android:background="@android:color/white">
-
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:layout_gravity="center_horizontal"
-
-                                    android:scaleType="centerCrop"
-                                    android:layout_marginBottom="8dp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Salicylic Acid 2% Masque"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold"
-                                    android:maxLines="2" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="50 ml | Expert"
-                                    android:textColor="@android:color/darker_gray"
-                                    android:textSize="10sp"
-                                    android:layout_marginTop="4dp" />
-
-                            </LinearLayout>
-
-                        </androidx.cardview.widget.CardView>
-
-                    </LinearLayout>
-
-                </HorizontalScrollView>
-
-                <!-- Video Section -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Video tutorials and blogs"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-
-                        app:tint="@android:color/darker_gray" />
-
-                </LinearLayout>
-
-                <!-- Video Cards -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
-
-                    <!-- Video 1 -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-
-                                android:scaleType="centerCrop" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/gradient_overlay" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:orientation="horizontal"
-                                android:padding="12dp"
-                                android:gravity="center_vertical">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_person"
-                                    android:layout_marginEnd="8dp" />
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Daily Skincare"
-                                        android:textColor="@android:color/white"
-                                        android:textSize="12sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Nighttime Routine Tutorial"
-                                        android:textColor="@android:color/white"
-                                        android:textSize="10sp" />
-
-                                </LinearLayout>
-
-                                <ImageView
-                                    android:layout_width="16dp"
-                                    android:layout_height="16dp"
-
-                                    app:tint="@android:color/white" />
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <!-- Video 2 -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="8dp"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-
-                                android:scaleType="centerCrop" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@drawable/gradient_overlay" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:orientation="horizontal"
-                                android:padding="12dp"
-                                android:gravity="center_vertical">
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_person"
-                                    android:layout_marginEnd="8dp" />
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Acne Treatment"
-                                        android:textColor="@android:color/white"
-                                        android:textSize="12sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Best Products Guide"
-                                        android:textColor="@android:color/white"
-                                        android:textSize="10sp" />
-
-                                </LinearLayout>
-
-                                <ImageView
-                                    android:layout_width="16dp"
-                                    android:layout_height="16dp"
-
-                                    app:tint="@android:color/white" />
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
+                    android:layout_weight="1"
+                    android:text="Products for you"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_bold" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:tint="@android:color/darker_gray" />
 
             </LinearLayout>
 
-        </ScrollView>
+            <!-- Products Horizontal Scroll -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:scrollbars="none">
 
-        <!-- Bottom Navigation -->
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:background="@android:color/white"
-            android:elevation="8dp"
-            app:itemIconTint="@color/bottom_nav_color"
-            app:itemTextColor="@color/bottom_nav_color"
-            app:menu="@menu/bottom_navigation_menu" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingEnd="16dp">
 
-    </RelativeLayout>
+                    <!-- Product 1 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="140dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="12dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_gravity="center_horizontal"
+                                android:scaleType="centerCrop"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Salicylic Acid 2% Clearing Solution"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:maxLines="2"
+                                android:fontFamily="@font/poppins_bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="30 ml | Expert"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="10sp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Product 2 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="140dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="12dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="8dp"
+                                android:scaleType="centerCrop" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="AHA 30% + BHA 2% Peeling Solution"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:maxLines="2"
+                                android:fontFamily="@font/poppins_bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="30 ml | Expert"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="10sp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Product 3 -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="140dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="12dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_gravity="center_horizontal"
+                                android:scaleType="centerCrop"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Salicylic Acid 2% Masque"
+                                android:textColor="@android:color/black"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:maxLines="2"
+                                android:fontFamily="@font/poppins_bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="50 ml | Expert"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="10sp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <!-- Video Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Video tutorials and blogs"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_bold" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:tint="@android:color/darker_gray" />
+
+            </LinearLayout>
+
+            <!-- Video Cards -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <!-- Video 1 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/gradient_overlay" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_person"
+                                android:layout_marginEnd="8dp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Daily Skincare"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/poppins_bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nighttime Routine Tutorial"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="10sp"
+                                    android:fontFamily="@font/poppins_regular" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                app:tint="@android:color/white" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Video 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/gradient_overlay" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:orientation="horizontal"
+                            android:padding="12dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_person"
+                                android:layout_marginEnd="8dp" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Acne Treatment"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:fontFamily="@font/poppins_bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Best Products Guide"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="10sp"
+                                    android:fontFamily="@font/poppins_regular" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                app:tint="@android:color/white" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>
