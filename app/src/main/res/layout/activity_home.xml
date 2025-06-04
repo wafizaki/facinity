@@ -21,92 +21,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Header Card -->
-                <androidx.cardview.widget.CardView
+
+
+  <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="4dp">
-
-                    <!-- Tambahkan setelah header card, sebelum Tips Cards Row -->
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:layout_marginBottom="16dp">
-
-    <Button
-        android:id="@+id/btnOilySkin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Oily Skin"
-        android:layout_marginEnd="8dp"/>
-
-    <Button
-        android:id="@+id/btnDrySkin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Dry Skin"
-        android:layout_marginEnd="8dp"/>
-
-    <Button
-        android:id="@+id/btnNormalSkin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Normal Skin"/>
-</LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-
-                        android:orientation="horizontal"
-                        android:padding="16dp">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Hi, Lorelle"
-                                android:textColor="@android:color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Skincare tips"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                android:layout_marginTop="4dp" />
-
-
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/circle_white"
-                            android:padding="8dp"
-
-                            android:tint="@color/teal_primary" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:scrollbars="none">
                 <!-- Tips Cards Row -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -145,6 +66,7 @@
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:gravity="center" />
+                           
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -162,6 +84,168 @@
                                 android:textSize="11sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="8dp" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="160dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center_horizontal"
+
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Oily Skin"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:gravity="center" />
+                         
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Use these products for oily skin"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="READ MORE"
+                                android:textColor="@color/teal_primary"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="8dp"
+                                android:id="@+id/btnOilySkin" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="160dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp"
+                       >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center_horizontal"
+
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dry Skin"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:gravity="center" />
+                         
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Use these products for dry skin"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="READ MORE"
+                                android:textColor="@color/teal_primary"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="8dp"
+                                 android:id="@+id/btnDrySkin" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="160dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp"
+                       >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center_horizontal"
+
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Normal Skin"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:gravity="center" />
+                         
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Use these products for normal skin"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="READ MORE"
+                                android:textColor="@color/teal_primary"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="8dp"
+                                 android:id="@+id/btnNormalSkin" />
 
                         </LinearLayout>
 
@@ -221,6 +305,8 @@
                     </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
+                    </HorizontalScrollView>
+
 
                 <!-- Products Section -->
                 <LinearLayout
@@ -243,7 +329,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
 
-                        android:tint="@android:color/darker_gray" />
+                        app:tint="@android:color/darker_gray" />
 
                 </LinearLayout>
 
@@ -324,8 +410,8 @@
                                     android:layout_height="80dp"
                                     android:layout_gravity="center_horizontal"
 
-                                    android:scaleType="centerCrop"
-                                    android:layout_marginBottom="8dp" />
+                                    android:layout_marginBottom="8dp"
+                                    android:scaleType="centerCrop" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -417,7 +503,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
 
-                        android:tint="@android:color/darker_gray" />
+                        app:tint="@android:color/darker_gray" />
 
                 </LinearLayout>
 
@@ -493,7 +579,7 @@
                                     android:layout_width="16dp"
                                     android:layout_height="16dp"
 
-                                    android:tint="@android:color/white" />
+                                    app:tint="@android:color/white" />
 
                             </LinearLayout>
 
@@ -566,7 +652,7 @@
                                     android:layout_width="16dp"
                                     android:layout_height="16dp"
 
-                                    android:tint="@android:color/white" />
+                                    app:tint="@android:color/white" />
 
                             </LinearLayout>
 

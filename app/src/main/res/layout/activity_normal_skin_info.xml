@@ -12,5 +12,15 @@
         android:text="Kulit normal terasa seimbang, tidak terlalu berminyak atau kering, dan pori-pori kecil. Perawatan: cukup jaga kebersihan dan gunakan pelembap ringan."
         android:textSize="16sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+         android:layout_marginBottom="24dp"/>
+    <Button
+        android:id="@+id/btnCariProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cari Produk"
+        android:backgroundTint="#FF5722"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"/>
+        
 </LinearLayout>

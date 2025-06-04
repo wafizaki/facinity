@@ -12,5 +12,14 @@
         android:text="Kulit kering terasa kasar, mudah bersisik, dan kadang pecah-pecah. Perawatan: gunakan pelembap intensif, hindari sabun keras, dan gunakan air hangat saat mencuci muka."
         android:textSize="16sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+         android:layout_marginBottom="24dp"/>
+    <Button
+        android:id="@+id/btnCariProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cari Produk"
+        android:backgroundTint="#FF5722"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

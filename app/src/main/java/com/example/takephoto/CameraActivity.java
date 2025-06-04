@@ -1,4 +1,3 @@
-
 package com.example.takephoto;
 
 import android.Manifest;

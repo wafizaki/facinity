@@ -5,13 +5,14 @@
 
     <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignTop="@+id/tvSkinCheckerTitle"
         android:layout_alignParentStart="true"
         android:layout_marginTop="4dp" android:layout_marginStart="4dp"
         android:background="@android:color/transparent"
         android:src="@android:drawable/ic_menu_revert"
-        android:tint="#222" android:contentDescription="Back" />
+        android:contentDescription="Back" />
 
     <ImageButton
         android:id="@+id/btnSwitchCamera"
@@ -23,7 +24,6 @@
         android:layout_marginEnd="4dp"
         android:background="@android:color/transparent"
         android:src="@android:drawable/ic_menu_rotate"
-        android:tint="#222"
         android:contentDescription="Switch Camera" />
 
     <TextView

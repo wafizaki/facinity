@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+
+
 public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
@@ -27,7 +29,6 @@ public class HomeActivity extends AppCompatActivity {
         setupBottomNavigation();
     }
 
-    // ...existing code...
     private void initializeViews() {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
@@ -38,7 +39,6 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.btnNormalSkin)
                 .setOnClickListener(v -> startActivity(new Intent(this, NormalSkinInfoActivity.class)));
     }
-    // ...existing code...
 
     private void setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener(item -> {

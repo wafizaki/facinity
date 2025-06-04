@@ -12,5 +12,14 @@
         android:text="Kulit berminyak cenderung tampak mengkilap, pori-pori besar, dan mudah berjerawat. Perawatan: gunakan pembersih lembut, hindari produk berbahan dasar minyak, dan gunakan pelembap ringan."
         android:textSize="16sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+         android:layout_marginBottom="24dp"/>
+    <Button
+        android:id="@+id/btnCariProduk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cari Produk"
+        android:backgroundTint="#FF5722"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
