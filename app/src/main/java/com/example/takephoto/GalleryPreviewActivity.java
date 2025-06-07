@@ -82,7 +82,7 @@ public class GalleryPreviewActivity extends AppCompatActivity {
                 "data:image/jpeg;base64," + base64Image
         );
 
-        String ROBOFLOW_URL = "https://serverless.roboflow.com/skin-types-ykqvh-mczrw/1?api_key=vJSLQaFSkpOFDYNoKb1k";
+        String ROBOFLOW_URL = "https://serverless.roboflow.com/skintypeppb/1?api_key=WC4BNY1aso9MDT8eP7uo";
 
         runOnUiThread(this::showLoadingDialog);
 
@@ -112,6 +112,9 @@ public class GalleryPreviewActivity extends AppCompatActivity {
                         if (predictions.length() > 0) {
                             JSONObject pred = predictions.getJSONObject(0);
                             tipeKulit = pred.getString("class");
+                            if (tipeKulit != null && tipeKulit.length() > 0) {
+                                tipeKulit = tipeKulit.substring(0, 1).toUpperCase() + tipeKulit.substring(1).toLowerCase();
+                            }
                             conf = pred.getDouble("confidence");
                             int persen = (int) Math.round(conf * 100);
                             message = "Tipe Kulit: " + tipeKulit + "\nTingkat: " + persen + "%";
