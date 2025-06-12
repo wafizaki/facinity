@@ -11,6 +11,7 @@ import android.media.ImageReader;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Base64;
+import android.util.Log;
 import android.util.Size;
 import android.view.*;
 import android.widget.*;
@@ -39,6 +40,9 @@ public class CameraActivity extends AppCompatActivity {
     private boolean isUsingBackCamera = true;
     private Dialog loadingDialogCustom;
 
+    private static final String FACE_DETECT_URL = "https://serverless.roboflow.com/face-ape5v/1?api_key=WC4BNY1aso9MDT8eP7uo";
+    private static final String ROBOFLOW_URL = "https://serverless.roboflow.com/skintypeppb/1?api_key=WC4BNY1aso9MDT8eP7uo";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +59,7 @@ public class CameraActivity extends AppCompatActivity {
         btnRetake.setOnClickListener(v -> resetPreview());
         btnNext.setOnClickListener(v -> {
             if (capturedBitmap != null) {
-                sendToRoboflow(capturedBitmap);
+                checkFaceFirst(capturedBitmap); // Deteksi wajah dulu sebelum skin type
             } else {
                 Toast.makeText(this, "No image captured", Toast.LENGTH_SHORT).show();
             }
@@ -68,7 +72,8 @@ public class CameraActivity extends AppCompatActivity {
         });
     }
 
-    private void sendToRoboflow(Bitmap bitmap) {
+    // Step 1: Deteksi wajah
+    private void checkFaceFirst(Bitmap bitmap) {
         String base64Image = bitmapToBase64(bitmap);
 
         OkHttpClient client = new OkHttpClient();
@@ -78,7 +83,105 @@ public class CameraActivity extends AppCompatActivity {
                 "data:image/jpeg;base64," + base64Image
         );
 
-        String ROBOFLOW_URL = "https://serverless.roboflow.com/skintypeppb/1?api_key=WC4BNY1aso9MDT8eP7uo";
+        runOnUiThread(this::showLoadingDialog);
+
+        Request request = new Request.Builder()
+                .url(FACE_DETECT_URL)
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override public void onFailure(Call call, IOException e) {
+                runOnUiThread(() -> {
+                    dismissLoadingDialog();
+                    Toast.makeText(CameraActivity.this, "Request gagal: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.body() != null) {
+                    String result = response.body().string();
+                    Log.d("FaceDetection", "Roboflow response: " + result);
+                    boolean faceDetected = false;
+                    double conf = 0;
+                    try {
+                        JSONObject json = new JSONObject(result);
+                        JSONArray predictions = json.getJSONArray("predictions");
+                        if (predictions.length() > 0) {
+                            JSONObject pred = predictions.getJSONObject(0);
+                            String predClass = pred.getString("class");
+                            if ("face".equalsIgnoreCase(predClass)) {
+                                faceDetected = true;
+                                conf = pred.optDouble("confidence", 0);
+                            }
+                        }
+                    } catch (Exception e) {
+                        faceDetected = false;
+                    }
+                    boolean finalFaceDetected = faceDetected;
+                    double finalConf = conf;
+                    runOnUiThread(() -> {
+                        dismissLoadingDialog();
+                        showFaceResultDialog(finalFaceDetected, finalConf, bitmap);
+                    });
+                }
+            }
+        });
+    }
+
+    // Step 2: Modal hasil prediksi face, lanjut ke skin type jika user klik "Lanjut"
+    private void showFaceResultDialog(boolean faceDetected, double confidence, Bitmap bitmap) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_result);
+        dialog.setCancelable(false);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        TextView tvTitle = dialog.findViewById(R.id.tvTitle);
+        TextView tvMessage = dialog.findViewById(R.id.tvMessage);
+        Button btnDetail = dialog.findViewById(R.id.btnDetail);
+        Button btnClose = dialog.findViewById(R.id.btnClose);
+        ImageView imgResult = dialog.findViewById(R.id.imgResult);
+
+        imgResult.setImageResource(R.drawable.ic_check_circle);
+
+        tvTitle.setText("Hasil Deteksi Wajah");
+        String msg;
+        if (faceDetected) {
+            int persen = (int) Math.round(confidence * 100);
+            msg = "Prediksi: Face";
+            btnDetail.setEnabled(true);
+        } else {
+            msg = "No face detection!";
+            btnDetail.setEnabled(false);
+        }
+        tvMessage.setText(msg);
+
+        btnDetail.setText("Lanjut");
+        btnDetail.setOnClickListener(v -> {
+            dialog.dismiss();
+            if (faceDetected) {
+                sendToRoboflow(bitmap);
+            }
+        });
+
+        btnClose.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
+    }
+
+    // Step 3: Prediksi skin type
+    private void sendToRoboflow(Bitmap bitmap) {
+        String base64Image = bitmapToBase64(bitmap);
+
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = RequestBody.create(
+                MediaType.parse("application/x-www-form-urlencoded"),
+                "data:image/jpeg;base64," + base64Image
+        );
 
         runOnUiThread(this::showLoadingDialog);
 
@@ -128,50 +231,52 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
     }
-private void showResultDialog(String message, String tipeKulit) {
-    Dialog dialog = new Dialog(this);
-    dialog.setContentView(R.layout.dialog_result);
-    dialog.setCancelable(false);
-    if (dialog.getWindow() != null) {
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+    private void showResultDialog(String message, String tipeKulit) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_result);
+        dialog.setCancelable(false);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        TextView tvTitle = dialog.findViewById(R.id.tvTitle);
+        TextView tvMessage = dialog.findViewById(R.id.tvMessage);
+        Button btnDetail = dialog.findViewById(R.id.btnDetail);
+        Button btnClose = dialog.findViewById(R.id.btnClose);
+        ImageView imgResult = dialog.findViewById(R.id.imgResult);
+
+        imgResult.setImageResource(R.drawable.ic_check_circle);
+
+        tvTitle.setText("Hasil Prediksi");
+        tvMessage.setText(message);
+
+        btnDetail.setOnClickListener(v -> {
+            if (tipeKulit != null) {
+                Intent intent = null;
+                switch (tipeKulit.toLowerCase()) {
+                    case "oily":
+                        intent = new Intent(this, OilySkinInfoActivity.class);
+                        break;
+                    case "dry":
+                        intent = new Intent(this, DrySkinInfoActivity.class);
+                        break;
+                    case "normal":
+                        intent = new Intent(this, NormalSkinInfoActivity.class);
+                        break;
+                }
+                if (intent != null) {
+                    startActivity(intent);
+                }
+            }
+            dialog.dismiss();
+        });
+
+        btnClose.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 
-    TextView tvTitle = dialog.findViewById(R.id.tvTitle);
-    TextView tvMessage = dialog.findViewById(R.id.tvMessage);
-    Button btnDetail = dialog.findViewById(R.id.btnDetail);
-    Button btnClose = dialog.findViewById(R.id.btnClose);
-    ImageView imgResult = dialog.findViewById(R.id.imgResult);
-
-    imgResult.setImageResource(R.drawable.ic_check_circle);
-
-    tvTitle.setText("Hasil Prediksi");
-    tvMessage.setText(message);
-
-    btnDetail.setOnClickListener(v -> {
-        if (tipeKulit != null) {
-            Intent intent = null;
-            switch (tipeKulit.toLowerCase()) {
-                case "oily":
-                    intent = new Intent(this, OilySkinInfoActivity.class);
-                    break;
-                case "dry":
-                    intent = new Intent(this, DrySkinInfoActivity.class);
-                    break;
-                case "normal":
-                    intent = new Intent(this, NormalSkinInfoActivity.class);
-                    break;
-            }
-            if (intent != null) {
-                startActivity(intent);
-            }
-        }
-        dialog.dismiss();
-    });
-
-    btnClose.setOnClickListener(v -> dialog.dismiss());
-
-    dialog.show();
-}
     private void showLoadingDialog() {
         if (loadingDialogCustom == null) {
             loadingDialogCustom = new Dialog(this);

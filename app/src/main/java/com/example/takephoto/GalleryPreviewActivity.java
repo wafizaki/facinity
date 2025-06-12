@@ -14,6 +14,7 @@ import java.io.ByteArrayOutputStream;
 import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import android.util.Log;
 
 public class GalleryPreviewActivity extends AppCompatActivity {
 
@@ -22,6 +23,9 @@ public class GalleryPreviewActivity extends AppCompatActivity {
     private ImageButton btnBack;
     private Dialog loadingDialogCustom;
     private Uri imageUri;
+
+    private static final String FACE_DETECT_URL = "https://serverless.roboflow.com/face-ape5v/1?api_key=WC4BNY1aso9MDT8eP7uo";
+    private static final String ROBOFLOW_URL = "https://serverless.roboflow.com/skintypeppb/1?api_key=WC4BNY1aso9MDT8eP7uo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,7 @@ public class GalleryPreviewActivity extends AppCompatActivity {
                 try {
                     InputStream imageStream = getContentResolver().openInputStream(imageUri);
                     Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
-                    sendToRoboflow(bitmap);
+                    checkFaceFirst(bitmap);
                 } catch (Exception e) {
                     Toast.makeText(this, "Gagal membaca gambar", Toast.LENGTH_SHORT).show();
                 }
@@ -72,7 +76,8 @@ public class GalleryPreviewActivity extends AppCompatActivity {
         }
     }
 
-    private void sendToRoboflow(Bitmap bitmap) {
+    // Step 1: Cek face dulu
+    private void checkFaceFirst(Bitmap bitmap) {
         String base64Image = bitmapToBase64(bitmap);
 
         OkHttpClient client = new OkHttpClient();
@@ -82,7 +87,104 @@ public class GalleryPreviewActivity extends AppCompatActivity {
                 "data:image/jpeg;base64," + base64Image
         );
 
-        String ROBOFLOW_URL = "https://serverless.roboflow.com/skintypeppb/1?api_key=WC4BNY1aso9MDT8eP7uo";
+        runOnUiThread(this::showLoadingDialog);
+
+        Request request = new Request.Builder()
+                .url(FACE_DETECT_URL)
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override public void onFailure(Call call, java.io.IOException e) {
+                runOnUiThread(() -> {
+                    dismissLoadingDialog();
+                    Toast.makeText(GalleryPreviewActivity.this, "Request gagal: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws java.io.IOException {
+                if (response.body() != null) {
+                    String result = response.body().string();
+                    Log.d("FaceDetection", "Roboflow response: " + result); // Tambahkan log di sini
+                    boolean faceDetected = false;
+                    double conf = 0;
+                    try {
+                        JSONObject json = new JSONObject(result);
+                        JSONArray predictions = json.getJSONArray("predictions");
+                        if (predictions.length() > 0) {
+                            JSONObject pred = predictions.getJSONObject(0);
+                            String predClass = pred.getString("class");
+                            if ("face".equalsIgnoreCase(predClass)) {
+                                faceDetected = true;
+                                conf = pred.optDouble("confidence", 0);
+                            }
+                        }
+                    } catch (Exception e) {
+                        faceDetected = false;
+                    }
+                    boolean finalFaceDetected = faceDetected;
+                    double finalConf = conf;
+                    runOnUiThread(() -> {
+                        dismissLoadingDialog();
+                        showFaceResultDialog(finalFaceDetected, finalConf, bitmap);
+                    });
+                }
+            }
+        });
+    }
+
+    // Step 2: Modal hasil prediksi face, lanjut ke skin type jika user klik "Lanjut"
+    private void showFaceResultDialog(boolean faceDetected, double confidence, Bitmap bitmap) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_result);
+        dialog.setCancelable(false);
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        TextView tvTitle = dialog.findViewById(R.id.tvTitle);
+        TextView tvMessage = dialog.findViewById(R.id.tvMessage);
+        Button btnDetail = dialog.findViewById(R.id.btnDetail);
+        Button btnClose = dialog.findViewById(R.id.btnClose);
+        ImageView imgResult = dialog.findViewById(R.id.imgResult);
+
+        imgResult.setImageResource(R.drawable.ic_check_circle);
+
+        tvTitle.setText("Hasil Deteksi Wajah");
+        String msg;
+        if (faceDetected) {
+            msg = "Prediksi: Face";
+            btnDetail.setEnabled(true);
+        } else {
+            msg = "No face detection!";
+            btnDetail.setEnabled(false);
+        }
+        tvMessage.setText(msg);
+
+        btnDetail.setText("Lanjut");
+        btnDetail.setOnClickListener(v -> {
+            dialog.dismiss();
+            if (faceDetected) {
+                sendToRoboflow(bitmap);
+            }
+        });
+
+        btnClose.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
+    }
+
+    // Step 3: Prediksi skin type
+    private void sendToRoboflow(Bitmap bitmap) {
+        String base64Image = bitmapToBase64(bitmap);
+
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody body = RequestBody.create(
+                MediaType.parse("application/x-www-form-urlencoded"),
+                "data:image/jpeg;base64," + base64Image
+        );
 
         runOnUiThread(this::showLoadingDialog);
 
@@ -146,7 +248,6 @@ public class GalleryPreviewActivity extends AppCompatActivity {
         Button btnDetail = dialog.findViewById(R.id.btnDetail);
         Button btnClose = dialog.findViewById(R.id.btnClose);
         ImageView imgResult = dialog.findViewById(R.id.imgResult);
-
 
         imgResult.setImageResource(R.drawable.ic_check_circle);
 
