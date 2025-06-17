@@ -40,7 +40,7 @@ public class CameraActivity extends AppCompatActivity {
     private boolean isUsingBackCamera = true;
     private Dialog loadingDialogCustom;
 
-    private static final String FACE_DETECT_URL = "https://serverless.roboflow.com/face-ape5v/1?api_key=WC4BNY1aso9MDT8eP7uo";
+    private static final String FACE_DETECT_URL = "https://serverless.roboflow.com/deteksi-wajah-vhzmz/1?api_key=WC4BNY1aso9MDT8eP7uo";
     private static final String ROBOFLOW_URL = "https://serverless.roboflow.com/skintypeppb/1?api_key=WC4BNY1aso9MDT8eP7uo";
 
     @Override
@@ -111,7 +111,7 @@ public class CameraActivity extends AppCompatActivity {
                         if (predictions.length() > 0) {
                             JSONObject pred = predictions.getJSONObject(0);
                             String predClass = pred.getString("class");
-                            if ("face".equalsIgnoreCase(predClass)) {
+                            if ("wajah".equalsIgnoreCase(predClass)) {
                                 faceDetected = true;
                                 conf = pred.optDouble("confidence", 0);
                             }
@@ -151,11 +151,12 @@ public class CameraActivity extends AppCompatActivity {
         String msg;
         if (faceDetected) {
             int persen = (int) Math.round(confidence * 100);
-            msg = "Prediksi: Face";
+            msg = "Prediksi: Face\nTingkat: " + persen + "%";
             btnDetail.setEnabled(true);
+            btnDetail.setVisibility(View.VISIBLE);
         } else {
             msg = "No face detection!";
-            btnDetail.setEnabled(false);
+            btnDetail.setVisibility(View.GONE); // Sembunyikan tombol "Lanjut" jika tidak ada wajah
         }
         tvMessage.setText(msg);
 
