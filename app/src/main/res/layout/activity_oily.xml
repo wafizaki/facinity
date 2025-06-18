@@ -1,28 +1,162 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:padding="24dp">
-    <TextView
-        android:text="Oily Skin"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/poppins_bold"
-        android:layout_marginBottom="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:text="Kulit berminyak cenderung tampak mengkilap, pori-pori besar, dan mudah berjerawat. Perawatan: gunakan pembersih lembut, hindari produk berbahan dasar minyak, dan gunakan pelembap ringan."
-        android:textSize="16sp"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"/>
-    <Button
-        android:id="@+id/btnCariProduk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cari Produk"
-        android:backgroundTint="#FF5722"
-        android:textColor="#fff"
-        android:fontFamily="@font/poppins_medium"
-        android:layout_gravity="center_horizontal"/>
-</LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Oily Skin Explanation -->
+        <TextView
+            android:text="Oily Skin"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Oily skin tends to look shiny and may have larger pores. It is prone to blackheads, acne, and excess sebum. Proper care helps control oil and prevent breakouts."
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Facewash Section -->
+        <TextView
+            android:text="Recommended Facewash"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgFacewash"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/facewash_oily"
+            android:contentDescription="@string/facewash_image"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:text="Use a foaming or gel-based facewash that removes excess oil without over-drying. Look for ingredients like salicylic acid or tea tree oil."
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/btnCariFacewash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:textColor="#fff"
+            android:text="Find Facewash on Shopee"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Moisturizer Section -->
+        <TextView
+            android:text="Recommended Moisturizer"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgMoisturizer"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/moist_oily"
+            android:contentDescription="@string/moisturizer_image"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:text="Choose an oil-free, lightweight moisturizer. Gel-based or water-based moisturizers are best for oily skin."
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/btnCariMoisturizer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:textColor="#fff"
+            android:text="Find Moisturizer on Shopee"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Toner Section -->
+        <TextView
+            android:text="Recommended Toner"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgToner"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/toner_oily"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:text="Use an alcohol-free toner that helps control oil and minimize pores. Ingredients like witch hazel or niacinamide are beneficial."
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/btnCariToner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:textColor="#fff"
+            android:text="Find Toner on Shopee"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Sunscreen Section -->
+        <TextView
+            android:text="Recommended Sunscreen"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgSunscreen"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/sunscreen_oily"
+            android:contentDescription="@string/sunscreen_image"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:text="Opt for a lightweight, non-comedogenic sunscreen. Gel or fluid formulas are ideal for oily skin and won't clog pores."
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"/>
+        <Button
+            android:id="@+id/btnCariSunscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:textColor="#fff"
+            android:text="Find Sunscreen on Shopee"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"/>
+            <!-- Back Button -->
+        <Button
+            android:id="@+id/btnBackHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back to Home"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+</ScrollView>

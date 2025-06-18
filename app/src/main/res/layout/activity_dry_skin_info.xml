@@ -1,35 +1,163 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:padding="24dp">
-    <TextView
-        android:text="Dry Skin"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/poppins_bold"
-        android:layout_marginBottom="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:text="Kulit kering terasa kasar, mudah bersisik, dan kadang pecah-pecah. Perawatan: gunakan pelembap intensif, hindari sabun keras, dan gunakan air hangat saat mencuci muka."
-        android:textSize="16sp"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"/>
-    <!-- <Button
-        android:id="@+id/btnCariProduk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cari Produk"
-        android:backgroundTint="#FF5722"
-        android:textColor="#fff"
-        android:layout_gravity="center_horizontal"/> -->
-    <ImageView
-        android:id="@+id/btnCariProduk"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/kahf_facewash"
-        android:contentDescription="@string/kahf_face_wash"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
-</LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Dry Skin Explanation -->
+        <TextView
+            android:text="Dry Skin"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Dry skin often feels tight, rough, or flaky. It may look dull and is prone to irritation and fine lines. Proper hydration and gentle care are essential for this skin type."
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Facewash Section -->
+        <TextView
+            android:text="Recommended Facewash"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgFacewash"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/facewash_dry"
+            android:contentDescription="@string/facewash_image"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:text="Choose a gentle, hydrating facewash that does not strip away natural oils. Look for products labeled as 'hydrating', 'moisturizing', or containing ingredients like glycerin or hyaluronic acid."
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/btnCariFacewash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:textColor="#fff"
+            android:text="Find Facewash on Shopee"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Moisturizer Section -->
+        <TextView
+            android:text="Recommended Moisturizer"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgMoisturizer"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/moist_dry"
+            android:contentDescription="@string/moisturizer_image"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:text="Opt for a rich, creamy moisturizer that provides long-lasting hydration. Ingredients like ceramides, shea butter, and squalane are great for dry skin."
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/btnCariMoisturizer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:textColor="#fff"
+            android:text="Find Moisturizer on Shopee"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Sunscreen Section -->
+        <TextView
+            android:text="Recommended Sunscreen"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgSunscreen"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/sunscreen_dry"
+            android:contentDescription="@string/sunscreen_image"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:text="Pick a sunscreen with moisturizing properties, preferably in cream or lotion form. Avoid gel-based sunscreens, as they can be drying."
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"/>
+        <Button
+            android:id="@+id/btnCariSunscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:textColor="#fff"
+            android:text="Find Sunscreen on Shopee"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Toner Section -->
+        <TextView
+            android:text="Recommended Toner"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgToner"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/toner_dry"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:text="Choose a hydrating toner that contains ingredients like hyaluronic acid, glycerin, or aloe vera. Avoid toners with high alcohol content, as they can further dry out your skin."
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
+        <Button
+            android:id="@+id/btnCariToner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:textColor="#fff"
+            android:text="Find Toner on Shopee"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Back Button -->
+        <Button
+            android:id="@+id/btnBackHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back to Home"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+</ScrollView>
