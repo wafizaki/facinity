@@ -12,16 +12,16 @@ public class NormalSkinInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_normal_skin_info);
 
         findViewById(R.id.btnCariFacewash).setOnClickListener(v -> {
-            openShopee("normal facewash");
+            openShopee("Wardah Lightening Micellar Gentle Wash");
         });
         findViewById(R.id.btnCariMoisturizer).setOnClickListener(v -> {
-            openShopee("normal moisturizer");
+            openShopee("Azarine Perfect Radiance Night Moisturizer");
         });
         findViewById(R.id.btnCariToner).setOnClickListener(v -> {
-            openShopee("normal toner");
+            openShopee("Avoskin Miraculous Refining Toner");
         });
         findViewById(R.id.btnCariSunscreen).setOnClickListener(v -> {
-            openShopee("normal sunscreen");
+            openShopee("Azarine 45 SPF Sunscreen");
         });
         findViewById(R.id.btnBackHome).setOnClickListener(v -> {
             Intent intent = new Intent(this, HomeActivity.class);

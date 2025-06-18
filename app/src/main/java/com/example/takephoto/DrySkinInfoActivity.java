@@ -12,16 +12,16 @@ public class DrySkinInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dry_skin_info);
 
         findViewById(R.id.btnCariFacewash).setOnClickListener(v -> {
-            openShopee("dry facewash");
+            openShopee("Wardah Nature Facewash");
         });
         findViewById(R.id.btnCariMoisturizer).setOnClickListener(v -> {
-            openShopee("dry moisturizer");
+            openShopee("Ceramic Skin Saviour Somethinc");
         });
         findViewById(R.id.btnCariToner).setOnClickListener(v -> {
-            openShopee("dry toner");
+            openShopee("Wardah Nature Daily Seaweed Primary Skin Hydrating Booster");
         });
         findViewById(R.id.btnCariSunscreen).setOnClickListener(v -> {
-            openShopee("dry sunscreen");
+            openShopee("Wardah UV Shield Physical Sunscreen");
         });
         findViewById(R.id.btnBackHome).setOnClickListener(v -> {
             Intent intent = new Intent(this, HomeActivity.class);

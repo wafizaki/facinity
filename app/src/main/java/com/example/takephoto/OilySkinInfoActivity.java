@@ -12,16 +12,16 @@ public class OilySkinInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_oily);
 
         findViewById(R.id.btnCariFacewash).setOnClickListener(v -> {
-            openShopee("oily facewash");
+            openShopee("Elsheskin Oily Cleanser Wash");
         });
         findViewById(R.id.btnCariMoisturizer).setOnClickListener(v -> {
-            openShopee("oily moisturizer");
+            openShopee("Azarine Pure Radiance Barrier Moisturizer");
         });
         findViewById(R.id.btnCariToner).setOnClickListener(v -> {
-            openShopee("oily toner");
+            openShopee("Elsheskin Oily Refresh Toner");
         });
         findViewById(R.id.btnCariSunscreen).setOnClickListener(v -> {
-            openShopee("oily sunscreen");
+            openShopee("Wardah UV Shield Active Protection Serum");
         });
 
         // Back to Home button

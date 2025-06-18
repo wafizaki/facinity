@@ -75,7 +75,6 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:src="@drawable/facewash_oily"
-                            android:padding="8dp"
                             android:layout_marginEnd="12dp"/>
                         <LinearLayout
                             android:orientation="vertical"
@@ -90,7 +89,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:text="Use a foaming or gel-based facewash that removes excess oil without over-drying. Look for ingredients like salicylic acid or tea tree oil."
+                                android:text="Use a foaming or gel-based facewash that removes excess oil without over-drying. Look for ingredients like salicylic acid or tea tree oil, try Elsheskin Refresh Toner."
                                 android:textSize="13sp"
                                 android:textColor="#444"
                                 android:layout_width="wrap_content"
@@ -120,7 +119,6 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:src="@drawable/moist_oily"
-                            android:padding="8dp"
                             android:layout_marginEnd="12dp"/>
                         <LinearLayout
                             android:orientation="vertical"
@@ -135,7 +133,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:text="Choose an oil-free, lightweight moisturizer. Gel-based or water-based moisturizers are best for oily skin."
+                                android:text="Choose an oil-free, lightweight moisturizer. Gel-based or water-based moisturizers are best for oily skin, Azarine pure radiance barrier moisturizer."
                                 android:textSize="13sp"
                                 android:textColor="#444"
                                 android:layout_width="wrap_content"
@@ -165,7 +163,6 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:src="@drawable/toner_oily"
-                            android:padding="8dp"
                             android:layout_marginEnd="12dp"/>
                         <LinearLayout
                             android:orientation="vertical"
@@ -180,7 +177,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:text="Use an alcohol-free toner that helps control oil and minimize pores. Ingredients like witch hazel or niacinamide are beneficial."
+                                android:text="Use an alcohol-free toner that helps control oil and minimize pores. Ingredients like witch hazel or niacinamide are beneficial, try Elsheskin toner oily skin."
                                 android:textSize="13sp"
                                 android:textColor="#444"
                                 android:layout_width="wrap_content"
@@ -210,7 +207,6 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:src="@drawable/sunscreen_oily"
-                            android:padding="8dp"
                             android:layout_marginEnd="12dp"/>
                         <LinearLayout
                             android:orientation="vertical"
@@ -225,7 +221,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                             <TextView
-                                android:text="Opt for a lightweight, non-comedogenic sunscreen. Gel or fluid formulas are ideal for oily skin and won't clog pores."
+                                android:text="Opt for a lightweight, non-comedogenic sunscreen. Gel or fluid formulas are ideal for oily skin and won't clog pores, try Wardah UV Shiled SPF 50 PA++++."
                                 android:textSize="13sp"
                                 android:textColor="#444"
                                 android:layout_width="wrap_content"
