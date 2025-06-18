@@ -4,30 +4,58 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
-    <!-- Container untuk judul dan tombol agar bisa di-center secara vertikal -->
     <LinearLayout
         android:id="@+id/centerContainer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp">
 
+        <!-- Modern, bold, spaced title -->
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SkinChecker"
-            android:textSize="32sp"
+            android:text="Facinity"
+            android:textSize="38sp"
             android:fontFamily="@font/poppins_bold"
             android:textStyle="bold"
             android:textColor="#222"
-            android:letterSpacing="0.05"
+            android:letterSpacing="0.12"
             android:shadowColor="#22000000"
             android:shadowDx="0"
             android:shadowDy="2"
-            android:shadowRadius="4"
-            android:layout_marginBottom="40dp"/>
+            android:shadowRadius="6"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Green divider for modern look -->
+        <View
+            android:layout_width="48dp"
+            android:layout_height="3dp"
+            android:background="@color/teal_primary"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="18dp"
+            android:layout_marginTop="2dp"
+            android:alpha="1"/>
+
+        <!-- Modern, concise description with more spacing and center alignment -->
+        <TextView
+            android:id="@+id/descText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AI-powered skin and face analysis for instant, personal beauty insights. Discover your skin’s needs in a snap!"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="#555"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginBottom="32dp"
+            android:maxWidth="320dp"
+            android:letterSpacing="0.02"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"

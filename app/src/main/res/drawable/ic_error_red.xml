@@ -1,0 +1,24 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Lingkaran merah -->
+    <path
+        android:fillColor="#FF3B30"
+        android:pathData="M24,4
+            a20,20 0 1,0 0,40
+            a20,20 0 1,0 0,-40" />
+    <!-- X putih garis pertama -->
+    <path
+        android:pathData="M16,16 L32,32"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"/>
+    <!-- X putih garis kedua -->
+    <path
+        android:pathData="M32,16 L16,32"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"/>
+</vector>

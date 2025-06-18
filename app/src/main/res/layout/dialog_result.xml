@@ -6,14 +6,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imgResult"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/ic_check_circle"
-        android:tint="@color/teal_primary"
-        android:layout_gravity="center"
-        android:layout_marginBottom="12dp" />
+   <ImageView
+    android:id="@+id/imgResult"
+    android:layout_width="64dp"
+    android:layout_height="64dp"
+    android:src="@drawable/ic_check_circle"
+    android:layout_gravity="center"
+    android:layout_marginBottom="12dp" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -46,7 +45,7 @@
             android:id="@+id/btnClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tutup"
+            android:text="Close"
             android:background="@drawable/bg_button_retake"
             android:textColor="#fff"
             android:paddingHorizontal="24dp"
