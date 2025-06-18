@@ -10,6 +10,8 @@
     <string name="facewash_image">Facewash Image</string>
     <string name="moisturizer_image">Moisturizer Image</string>
     <string name="sunscreen_image">Sunscreen Image</string>
+    <string name="header_image">Header Image</string>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

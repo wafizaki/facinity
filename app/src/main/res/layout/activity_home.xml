@@ -15,22 +15,6 @@
 
 
 
-        Facinity Header with Text Outline
-        Kode
-        I've added text shadow/outline to both the "Facinity" title and the description text to make them more visible against the background. The outline is created using:
-
-        android:shadowColor="@android:color/white" - white shadow color for contrast
-        android:shadowDx and android:shadowDy - shadow offset positions
-        android:shadowRadius - shadow blur radius
-        The title has a stronger shadow (radius 4, offset 2) while the description has a subtler shadow (radius 2, offset 1) to maintain good readability against the background image.
-
-
-
-
-
-        Anda kehabisan pesan gratis sampai 21.00
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,43 +28,26 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp">
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:background="@drawable/background"
-                    android:padding="24dp"
-                    android:gravity="center">
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Facinity"
-                        android:textColor="@color/teal_primary"
-                        android:textSize="40sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_bold"
-                        android:layout_marginBottom="8dp"
-                        android:shadowColor="@android:color/white"
-                        android:shadowDx="2"
-                        android:shadowDy="2"
-                        android:shadowRadius="4" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bg"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="@string/header_image" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Discover your skin's need!"
-                        android:textColor="@android:color/darker_gray"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:gravity="center"
-                        android:shadowColor="@android:color/white"
-                        android:shadowDx="1"
-                        android:shadowDy="1"
-                        android:shadowRadius="2" />
-
-                </LinearLayout>
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="24dp"
+                        android:gravity="center">
+                        <!-- Tambahkan konten lain di sini jika ada -->
+                    </LinearLayout>
+                </FrameLayout>
             </androidx.cardview.widget.CardView>
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -96,9 +63,8 @@
 
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                        android:layout_width="200dp"
                         android:layout_height="210dp"
-                        android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="3dp">
@@ -151,9 +117,8 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                        android:layout_width="200dp"
                         android:layout_height="210dp"
-                        android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="3dp">
@@ -185,7 +150,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Use these products for dry skin"
+                                android:text="Products for dry skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="12sp"
                                 android:layout_marginTop="4dp"
@@ -206,9 +171,8 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                        android:layout_width="200dp"
                         android:layout_height="210dp"
-                        android:layout_weight="1"
                         android:layout_marginEnd="8dp"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="3dp">
@@ -240,7 +204,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="These products for normal skin"
+                                android:text="Products for normal skin"
                                 android:textColor="@android:color/darker_gray"
                                 android:textSize="12sp"
                                 android:layout_marginTop="4dp"
