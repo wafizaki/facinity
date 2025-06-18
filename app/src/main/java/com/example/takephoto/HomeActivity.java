@@ -32,8 +32,24 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         cardArtikel1 = findViewById(R.id.cardArtikel1);
 
-        // Skin type buttons have been removed from layout
-        // Add new functionality here if needed
+        // Setup skin type buttons - check if they exist first
+        View btnOilySkin = findViewById(R.id.btnOilySkin);
+        if (btnOilySkin != null) {
+            btnOilySkin.setOnClickListener(v ->
+                    startActivity(new Intent(this, OilySkinInfoActivity.class)));
+        }
+
+        View btnDrySkin = findViewById(R.id.btnDrySkin);
+        if (btnDrySkin != null) {
+            btnDrySkin.setOnClickListener(v ->
+                    startActivity(new Intent(this, DrySkinInfoActivity.class)));
+        }
+
+        View btnNormalSkin = findViewById(R.id.btnNormalSkin);
+        if (btnNormalSkin != null) {
+            btnNormalSkin.setOnClickListener(v ->
+                    startActivity(new Intent(this, NormalSkinInfoActivity.class)));
+        }
     }
 
     private void setupArticleCard() {
@@ -60,8 +76,8 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, MainActivity.class));
                 overridePendingTransition(0, 0);
                 return true;
+
             }
-            // Add other navigation items here when they exist in your menu
 
             return false;
         });
