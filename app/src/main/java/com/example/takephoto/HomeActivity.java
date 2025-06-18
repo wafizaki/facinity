@@ -62,13 +62,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, MainActivity.class));
                 overridePendingTransition(0, 0); 
                 return true;
-            } else if (id == R.id.nav_products) {
-                Toast.makeText(this, "Products feature coming soon", Toast.LENGTH_SHORT).show();
-                return true;
-            } else if (id == R.id.nav_profile) {
-                Toast.makeText(this, "Profile feature coming soon", Toast.LENGTH_SHORT).show();
-                return true;
-            }
+            } 
+            // else if (id == R.id.nav_products) {
+            //     Toast.makeText(this, "Products feature coming soon", Toast.LENGTH_SHORT).show();
+            //     return true;
+            // } else if (id == R.id.nav_profile) {
+            //     Toast.makeText(this, "Profile feature coming soon", Toast.LENGTH_SHORT).show();
+            //     return true;
+            // }
             return false;
         });
 
