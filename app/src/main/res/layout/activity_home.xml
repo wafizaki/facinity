@@ -13,6 +13,24 @@
         android:layout_above="@+id/bottomNavigation"
         android:padding="16dp">
 
+
+
+        Facinity Header with Text Outline
+        Kode
+        I've added text shadow/outline to both the "Facinity" title and the description text to make them more visible against the background. The outline is created using:
+
+        android:shadowColor="@android:color/white" - white shadow color for contrast
+        android:shadowDx and android:shadowDy - shadow offset positions
+        android:shadowRadius - shadow blur radius
+        The title has a stronger shadow (radius 4, offset 2) while the description has a subtler shadow (radius 2, offset 1) to maintain good readability against the background image.
+
+
+
+
+
+        Anda kehabisan pesan gratis sampai 21.00
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:background="@android:color/white"
+                    android:background="@drawable/background"
                     android:padding="24dp"
                     android:gravity="center">
 
@@ -39,10 +57,14 @@
                         android:layout_height="wrap_content"
                         android:text="Facinity"
                         android:textColor="@color/teal_primary"
-                        android:textSize="32sp"
+                        android:textSize="40sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_bold"
-                        android:layout_marginBottom="8dp" />
+                        android:layout_marginBottom="8dp"
+                        android:shadowColor="@android:color/white"
+                        android:shadowDx="2"
+                        android:shadowDy="2"
+                        android:shadowRadius="4" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -51,11 +73,198 @@
                         android:textColor="@android:color/darker_gray"
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_regular"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:shadowColor="@android:color/white"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="2" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:scrollbars="none">
+                <!-- Tips Cards Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="24dp">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="210dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="8dp"
+                                android:src="@drawable/dry" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Oily Skin"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Products for oily skin"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="READ MORE"
+                                android:textColor="@color/teal_primary"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="8dp"
+                                android:id="@+id/btnOilySkin"
+                                android:fontFamily="@font/poppins_bold" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="210dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="8dp"
+                                android:src="@drawable/oily" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dry Skin"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Use these products for dry skin"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="READ MORE"
+                                android:textColor="@color/teal_primary"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="8dp"
+                                android:id="@+id/btnDrySkin"
+                                android:fontFamily="@font/poppins_bold" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="210dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="12dp"
+                            android:background="@android:color/white">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="8dp"
+                                android:src="@drawable/normal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Normal Skin"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:fontFamily="@font/poppins_bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="These products for normal skin"
+                                android:textColor="@android:color/darker_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="4dp"
+                                android:fontFamily="@font/poppins_regular" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="READ MORE"
+                                android:textColor="@color/teal_primary"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:layout_marginTop="8dp"
+                                android:id="@+id/btnNormalSkin"
+                                android:fontFamily="@font/poppins_bold" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <!-- Products Section -->
             <LinearLayout
