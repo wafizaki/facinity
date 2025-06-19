@@ -13,8 +13,6 @@
         android:layout_above="@+id/bottomNavigation"
         android:padding="16dp">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +47,7 @@
                     </LinearLayout>
                 </FrameLayout>
             </androidx.cardview.widget.CardView>
+
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +59,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="24dp">
-
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="200dp"
@@ -116,6 +114,7 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="200dp"
                         android:layout_height="210dp"
@@ -170,6 +169,7 @@
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:layout_width="200dp"
                         android:layout_height="210dp"
@@ -225,8 +225,6 @@
 
                     </androidx.cardview.widget.CardView>
 
-
-
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -270,9 +268,13 @@
 
                     <!-- Product 1 -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardProduct1"
                         android:layout_width="140dp"
                         android:layout_height="200dp"
                         android:layout_marginEnd="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="3dp">
 
@@ -316,9 +318,13 @@
 
                     <!-- Product 2 -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardProduct2"
                         android:layout_width="140dp"
                         android:layout_height="200dp"
                         android:layout_marginEnd="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="3dp">
 
@@ -362,9 +368,13 @@
 
                     <!-- Product 3 -->
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardProduct3"
                         android:layout_width="140dp"
                         android:layout_height="200dp"
                         android:layout_marginEnd="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:cardCornerRadius="12dp"
                         app:cardElevation="3dp">
 
@@ -481,7 +491,6 @@
                             <ImageView
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
-
                                 android:layout_marginEnd="8dp" />
 
                             <LinearLayout
@@ -522,10 +531,14 @@
 
                 <!-- Video 2 -->
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardArtikel2"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="3dp">
 
